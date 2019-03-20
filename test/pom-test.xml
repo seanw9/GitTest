@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.cetc.cmp</groupId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<artifactId>cmp-tests</artifactId>
+	<packaging>pom</packaging>
+
+	<description>longcloud cloud manager platform core libs</description>
+	<url>http://www.g-cloud.com.cn</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<type>test</type>
+	</properties>
+
+	<dependencies>
+	</dependencies>
+
+	<modules>
+		<module>cmp-test</module>
+	</modules>
+
+	<build>
+		<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>ant-package</id>
+							<phase>clean</phase>
+							<goals>
+								<goal>run</goal>
+							</goals>
+							<configuration>
+								<tasks>
+									<echo message="*** type = ${type} ***" />
+									<echo message="*** gc.repository.url = ${gc.repository.url} ***" />
+								</tasks>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>aaa</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<file>
+					<exists>cmp-test2</exists>
+				</file>
+			</activation>
+			<modules>
+				<module>cmp-test2</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>bbb</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<file>
+					<exists>cmp-test3</exists>
+				</file>
+			</activation>
+			<modules>
+				<module>cmp-test3/pom-test.xml</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>ccc</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<file>
+					<exists>cmp-test4</exists>
+				</file>
+			</activation>
+			<modules>
+				<module>cmp-test4</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<activation>
+				<jdk>[1.6,)</jdk>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>cmp-end</module>
+			</modules>
+		</profile>
+
+	</profiles>
+
+	
+</project>
